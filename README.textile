@@ -2,6 +2,10 @@ h1. Pusher module for Play! 2
 
 This module lets you easily interact with the Pusher Service http://wwww.pusher.com within your Play 2 application.
 
+h2. Installation
+
+(Pending)
+
 h2. Usage
 
 Take a look at the Play2Pusher-sample for a short example on how to use the module.
@@ -9,7 +13,8 @@ Take a look at the Play2Pusher-sample for a short example on how to use the modu
 The preferred usage is as follows:
 
 bc. // Trigger an event on a channel and deliver a message to all the connected sockets:
-Pusher().trigger(channel, event, message)
+val pusher = Pusher()
+val promise = pusher.trigger(channel, event, message)
 
 Which requires adding the following lines to your application.conf file:
 
@@ -21,7 +26,7 @@ pusher.secret = SECRET
 You could also do the following instead of using the application.conf file:
 
 bc. val pusher = Pusher(APP_ID, KEY, SECRET)
-pusher.trigger(channel, event, message)
+val promise = pusher.trigger(channel, event, message)
 
 h3. Examining the response
 
@@ -37,7 +42,7 @@ bc. pusher.trigger(channel, event, message, socketId)
 
 h3. Generating the authentication string
 
-When a socket tries to connect to a private channel, it will make a POST request to **/pusher/auth** on your server. You will need to generate and return a JSON object containing the auth signature that allows the socket to connect to the private channel. That is really easy :
+When a socket tries to connect to a private channel, it will make a POST request to **/pusher/auth** on your server. You will need to generate and return a JSON object containing the auth signature that allows the socket to connect to the private channel. This is achieved by:
 
 bc. pusher.createAuthString(socketId, channelName)
 

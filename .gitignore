@@ -1,0 +1,10 @@
+.cache
+.classpath
+.DS_Store
+.project
+project/project
+project/target
+target
+.target
+bin
+.settings

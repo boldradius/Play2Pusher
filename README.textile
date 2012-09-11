@@ -1,1 +1,55 @@
-Placeholder
+h1. Pusher module for Play! 2
+
+This module lets you easily interact with the Pusher Service http://wwww.pusher.com within your Play 2 application.
+
+h2. Usage
+
+Take a look at the Play2Pusher-sample for a short example on how to use the module.
+
+The preferred usage is as follows:
+
+bc. // Trigger an event on a channel and deliver a message to all the connected sockets:
+Pusher().trigger(channel, event, message)
+
+Which requires adding the following lines to your application.conf file:
+
+bc. # Pusher Configuration
+pusher.appId = APP_ID
+pusher.key = KEY
+pusher.secret = SECRET
+
+You could also do the following instead of using the application.conf file:
+
+bc. val pusher = Pusher(APP_ID, KEY, SECRET)
+pusher.trigger(channel, event, message)
+
+h3. Examining the response
+
+The Pusher.trigger method returns a Promise[Response], which you can manipulate to verify the response status and body for error handling.
+
+Successful events will respond with a 202 status. For more details, take a look at http://pusher.com/docs/rest_api
+
+h3. Excluding sockets
+
+You can also exclude a socket (usually the sender) from receiving the message by specifying its socket id:
+
+bc. pusher.trigger(channel, event, message, socketId)
+
+h3. Generating the authentication string
+
+When a socket tries to connect to a private channel, it will make a POST request to **/pusher/auth** on your server. You will need to generate and return a JSON object containing the auth signature that allows the socket to connect to the private channel. That is really easy :
+
+bc. pusher.createAuthString(socketId, channelName)
+
+h4. Example
+
+In your controller you can have something like this:
+
+bc. val socketId = "yourSocketId"
+val channelName = "yourChannelName"
+renderJSON(pusher.createAuthString(socketId, channelName))
+
+h3. Pending work
+
+# Support Presence channels properly.
+# Add samples for private and presence channels.

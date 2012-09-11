@@ -1,6 +1,6 @@
 h1. Pusher module for Play! 2
 
-This module lets you easily interact with the Pusher Service http://wwww.pusher.com within your Play 2 application.
+This module lets you easily interact with the Pusher Service http://www.pusher.com within your Play 2 application.
 
 h2. Installation
 
@@ -32,7 +32,7 @@ h3. Examining the response
 
 The Pusher.trigger method returns a Promise[Response], which you can manipulate to verify the response status and body for error handling.
 
-Successful events will respond with a 202 status. For more details, take a look at http://pusher.com/docs/rest_api
+Successful events will respond with a 202 status. For more details, take a look at http://www.pusher.com/docs/rest_api
 
 h3. Excluding sockets
 

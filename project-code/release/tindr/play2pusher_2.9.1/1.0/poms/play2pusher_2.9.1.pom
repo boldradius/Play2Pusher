@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>play2pusher</groupId>
+    <groupId>tindr</groupId>
     <artifactId>play2pusher_2.9.1</artifactId>
     <packaging>jar</packaging>
     <description>Play2Pusher</description>
     <version>1.0</version>
     <name>Play2Pusher</name>
     <organization>
-        <name>play2pusher</name>
+        <name>tindr</name>
     </organization>
     <dependencies>
         <dependency>

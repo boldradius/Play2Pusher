@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
-	<info organisation="play2pusher" module="play2pusher_2.9.1" revision="1.0" status="release" publication="20120917125401">
+	<info organisation="tindr" module="play2pusher_2.9.1" revision="1.0" status="release" publication="20120917125956">
 		<description>
 		Play2Pusher
 		</description>

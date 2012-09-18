@@ -72,7 +72,13 @@ bc. val socketId = "yourSocketId"
 val channelName = "yourChannelName"
 renderJSON(pusher.createAuthString(socketId, channelName))
 
-h3. Pending work
+h3. Disabling Pusher events
+
+You might need to turn off Pusher notifications altogether for testing or debugging. 
+
+The @pusher.enabled=false@ configuration option allows you to do just this. It defaults to true if not found.
+
+h2. Pending work
 
 # Support Presence channels properly.
 # Add samples for private and presence channels.

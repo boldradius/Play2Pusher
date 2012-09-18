@@ -4,7 +4,23 @@ This module lets you easily interact with the Pusher Service http://www.pusher.c
 
 h2. Installation
 
-(Pending)
+To use this module on your Play 2 application, you need to modify your Build.scala file:
+
+<pre>
+val appDependencies = Seq(
+  (... your other dependencies, if any ...)
+  "tindr" % "play2pusher_2.9.1" % "1.0.1" // Tindr's play2pusher module dependency
+)
+
+val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings( 
+  (... your other settings, if any ...)
+  resolvers += Resolver.url("Tindr's Play module repository", url("http://tindr.github.com/releases/"))(Resolver.ivyStylePatterns)
+)
+</pre>
+
+*That's it!* 
+
+Next time you build your project, it will fetch the module from our repository and add it to your project's dependencies.
 
 h2. Usage
 

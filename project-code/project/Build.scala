@@ -4,16 +4,14 @@ import PlayProject._
 
 object ApplicationBuild extends Build {
 
-    val appName         = "Play2Pusher"
-    val appVersion      = "1.0"
+	val appName = "Play2Pusher"
+	val appVersion = "1.0.1"
 
-    val appDependencies = Seq(
-      // Add your project dependencies here,
-    )
+	val appDependencies = Seq( // Add your project dependencies here,
+	)
 
-    val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
-      // Add your own project settings here
-      organization := "tindr"      
-    )
+	val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
+		// Add your own project settings here
+		organization := "tindr")
 
 }

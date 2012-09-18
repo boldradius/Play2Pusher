@@ -16,11 +16,12 @@ import PusherUtil._
 case class Pusher(private val appId: String, private val key: String, private val secret: String) {
 
 	private val host = "api.pusherapp.com"
+	private val enabled = current.configuration.getBoolean("pusher.enabled").getOrElse(true)
 
 	/**
 	 * Triggers an event on a channel and delivers a message to all the channel suscribers.
 	 */
-	def trigger(channel: String, event: String, message: String): Promise[Response] = trigger(channel, event, message, None)
+	def trigger(channel: String, event: String, message: String): Option[Promise[Response]] = trigger(channel, event, message, None)
 
 	/**
 	 * Triggers an event on a channel and delivers a message to all the channel suscribers
@@ -28,27 +29,30 @@ case class Pusher(private val appId: String, private val key: String, private va
 	 */
 	def trigger(channel: String, event: String, message: String, socketId: Option[String]) = {
 
-		val path = "/apps/" + appId + "/channels/" + channel + "/events"
-		val socketParam = socketId match {
-			case Some(id) => "&socket_id=" + id
-			case _ => ""
+		if (!enabled) {
+			None
+		} else {
+			val path = "/apps/" + appId + "/channels/" + channel + "/events"
+			
+			val socketParam = socketId match {
+				case Some(id) => "&socket_id=" + id
+				case _ => ""
+			}
+
+			val query = "auth_key=" + this.key +
+				"&auth_timestamp=" + (System.currentTimeMillis() / 1000) +
+				"&auth_version=1.0" +
+				"&body_md5=" + md5(message).getOrElse("") +
+				"&name=" + event +
+				socketParam
+
+			val key = "POST\n" + path + "\n" + query
+			val signature = sha256(key, secret).getOrElse("")
+
+			val uri = "http://" + host + path + "?" + query + "&auth_signature=" + signature
+
+			Some(WS.url(uri).post(message))
 		}
-
-		val query = "auth_key=" + this.key +
-			"&auth_timestamp=" + (System.currentTimeMillis() / 1000) +
-			"&auth_version=1.0" +
-			"&body_md5=" + md5(message).getOrElse("") +
-			"&name=" + event +
-			socketParam
-
-		val key = "POST\n" + path + "\n" + query
-		val signature = sha256(key, secret).getOrElse("")
-		
-		val uri = "http://" + host + path + "?" + query + "&auth_signature=" + signature
-		
-		Logger.info("Sending message to the following uri: '" + uri + "'")
-
-		WS.url(uri).post(message)
 	}
 
 	/**

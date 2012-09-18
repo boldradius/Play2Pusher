@@ -1,10 +1,10 @@
 h1. Pusher module for Play! 2
 
-This module lets you easily interact with the Pusher Service http://www.pusher.com within your Play 2 application.
+This module lets you easily interact with the "Pusher Service":http://www.pusher.com within your "Play 2":http://playframework.com application.
 
 h2. Installation
 
-To use this module on your Play 2 application, you need to modify your Build.scala file:
+To use this module on your Play 2 application, you need to modify your @Build.scala@ file:
 
 <pre>
 val appDependencies = Seq(
@@ -14,7 +14,9 @@ val appDependencies = Seq(
 
 val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings( 
   (... your other settings, if any ...)
-  resolvers += Resolver.url("Tindr's Play module repository", url("http://tindr.github.com/releases/"))(Resolver.ivyStylePatterns)
+  resolvers += Resolver.url("Tindr's Play module repository", 
+    url("http://tindr.github.com/releases/"))
+    (Resolver.ivyStylePatterns)
 )
 </pre>
 
@@ -24,7 +26,7 @@ Next time you build your project, it will fetch the module from our repository a
 
 h2. Usage
 
-Take a look at the Play2Pusher-sample for a short example on how to use the module.
+Take a look at the @Play2Pusher-sample@ project for a short example on how to use the module.
 
 The preferred usage is as follows:
 

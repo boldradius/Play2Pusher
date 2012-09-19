@@ -12,14 +12,10 @@ object Application extends Controller {
 		val event = "my_event"
 		val message = "Hello from the Play2Pusher sample app!"
 		
-		// Send message through Pusher and catch response
+		// Send message through Pusher
 		val promise = Pusher().trigger(channel, event, message)
-		val resp = promise.await(10000)
 		
-		// Check status and body
-		Logger.debug("Status: " + resp.get.status)
-		Logger.debug("Body: " + resp.get.body.toString())
-
+		// If you need to verify the response, just manipulate the promise object. Otherwise move on
 		Ok(views.html.index(message))
 	}
 

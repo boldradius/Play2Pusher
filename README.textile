@@ -1,3 +1,9 @@
+h1. IMPORTANT NOTE
+
+h3. This module has not been updated in a while, and is now using an outdated version of Pusher.
+
+h3. If you're interested in this library, we encourage you to try it out with the newest version of Pusher, and to contribute any changes that would be necessary for proper integration.
+
 h1. Pusher module for Play! 2
 
 This module lets you easily interact with the "Pusher Service":http://www.pusher.com within your "Play 2":http://playframework.com application.
